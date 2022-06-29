@@ -74,6 +74,7 @@ class AddTodo extends Component {
         />
         </LocalizationProvider>
         <Button
+          data-testid="new-item-button"
           style={{ marginLeft: "10px" }}
           onClick={this.handleSubmit}
           variant="contained"
