@@ -10,17 +10,23 @@ import { Card, Grid, ListItemButton, ListItemText, Checkbox} from "@mui/material
 // 4. Think of lines 14-23 as a loop. For each todo in the todo list, we want to give the list item
 // a key, and it's own card shown in the UI
 const Todos = ({ todos, deleteTodo }) => {
+  
   const todoList = todos.length ? (
     todos.map((todo) => {
+      let color = "#fff";
+      let curdate = new Date().toLocaleDateString();
+      if (curdate > todo.due) {
+        color = "#ff0000";
+      }
       return (
         <Grid key={todo.id}>
-          <Card style={{marginTop:10}}>
+          <Card style={{background: color, marginTop:10}} data-testid={todo.content}>
             {/* Remember, we set the local state of this todo item when the user submits the form in 
             AddTodo.js. All we need to do is return the todo list item {todo.content} as well as its 
             current date/time {todo.date}. Also, the item's id is utilized in order to correctly delete an item from the Todo list*/}.
             <ListItemButton component="a" href="#simple-list">
               <Checkbox style={{paddingLeft:0}} color="primary" onClick={() => deleteTodo(todo.id)}/>
-              <ListItemText primary={todo.content} secondary={todo.date}/>
+              <ListItemText primary={todo.content} secondary={todo.due}/>
             </ListItemButton>
           </Card>
         </Grid>
