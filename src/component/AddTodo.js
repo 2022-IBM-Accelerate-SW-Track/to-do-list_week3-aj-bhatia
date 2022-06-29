@@ -60,6 +60,7 @@ class AddTodo extends Component {
         <TextField
           label="Add New Item"
           variant="outlined"
+          data-testid="new-item-input"
           onChange={this.handleChange}
           value={this.state.content}
         />
